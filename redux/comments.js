@@ -16,3 +16,4 @@ export const comments = (state = {
             return state;
     }
 }
+// we are using static things

@@ -12,6 +12,7 @@ const mapStateToProps = state => {
         favorites: state.favorites
     }
 }
+// mapping to be done
 
 const mapDispatchToProps = dispatch => ({
     postFavorite: dishId => dispatch(postFavorite(dishId)),
