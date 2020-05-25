@@ -62,7 +62,7 @@ class Favorites extends Component {
                         title={item.name}
                         subtitle={item.description}
                         hideChevron={true}
-                        onPress={() => navigate('Dishdetail', { dishId: item.id })}
+                        onPress={() => navigate('DishDetail', { dishId: item.id })}
                         leftAvatar={{ source: {uri: baseUrl + item.image}}}
                         />
                 </Swipeout>
