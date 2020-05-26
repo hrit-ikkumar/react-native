@@ -97,6 +97,7 @@ class DishDetail extends Component {
 
         const RenderDish = (props) => {
             const dish = props.dish;
+            // it is a functional componenet so that is the reason of making const 
             var viewRef
             const handleViewRef = ref => viewRef = ref;
             console.log("Dish: " + JSON.stringify(dish));
