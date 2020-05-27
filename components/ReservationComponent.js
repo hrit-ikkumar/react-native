@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import * as Animatable from 'react-native-animatable';
-import { Permissions, Notifications } from 'expo';
-
+import {  Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
 
 // styles have been added!
 const styles = StyleSheet.create({
