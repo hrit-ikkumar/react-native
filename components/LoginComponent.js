@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { Input, CheckBox, Button, Icon } from 'react-native-elements';
+import * as SecureStore from 'expo-secure-store';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
 import { createBottomTabNavigator } from 'react-navigation';
 import { baseUrl } from '../shared/baseUrl';
-import * as Permissions from 'expo-permissions';
-import * as SecureStore from 'expo-secure-store';
-import * as ImagePicker from 'expo-image-picker';
-import * as ImageManipulator from "expo-image-manipulator";
-
+import * as ImageManipulator from 'expo-image-manipulator'
+// Login Tab created here
 class LoginTab extends Component {
 
     constructor(props) {
@@ -54,7 +54,7 @@ class LoginTab extends Component {
                 .catch((error) => console.log('Could not delete user info', error));
 
     }
-
+    // render elements
     render() {
         return (
             <View style={styles.container}>
@@ -146,14 +146,27 @@ class RegisterTab extends Component {
             });
             if (!capturedImage.cancelled) {
                 console.log(capturedImage);
-                this.processImage(capturedImage.uri);
+                this.processImage(capturedImage.uri); 
             }
         }
 
     }
+    
+    getImageFromGallery = async () =>
+    {
+        let capturedImage = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+          });
+          if (!capturedImage.cancelled) 
+          {
+            console.log(capturedImage);
+            this.processImage(capturedImage.uri)  
+          }
+    }
 
     processImage = async (imageUri) => {
-        let processedImage = await ImageManipulator.manipulate(
+        let processedImage = await ImageManipulator.manipulateAsync(
             imageUri, 
             [
                 {resize: {width: 400}}
@@ -162,7 +175,7 @@ class RegisterTab extends Component {
         );
         console.log(processedImage);
         this.setState({imageUrl: processedImage.uri });
-
+    
     }
     
     static navigationOptions = {
@@ -184,6 +197,8 @@ class RegisterTab extends Component {
                 .catch((error) => console.log('Could not save user info', error));
     }
 
+    
+
     render() {
         return(
             <ScrollView>
@@ -197,6 +212,10 @@ class RegisterTab extends Component {
                     <Button
                         title="Camera"
                         onPress={this.getImageFromCamera}
+                        />
+                    <Button
+                        title="Gallery"
+                        onPress={this.getImageFromGallery}
                         />
                 </View>
                 <Input
@@ -216,7 +235,7 @@ class RegisterTab extends Component {
                 <Input
                     placeholder="First Name"
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
-                    onChangeText={(lastname) => this.setState({firstname})}
+                    onChangeText={(firstname) => this.setState({firstname})}
                     value={this.state.firstname}
                     containerStyle={styles.formInput}
                     />
@@ -279,14 +298,15 @@ const styles = StyleSheet.create({
       height: 60
     },
     formInput: {
-        margin: 20
+        margin: 20,
+        marginLeft : 5
     },
     formCheckbox: {
-        margin: 20,
+        margin: 10,
         backgroundColor: null
     },
     formButton: {
-        margin: 60
+        margin: 30
     }
 });
 

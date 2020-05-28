@@ -292,16 +292,16 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
-    NetInfo.getConnectionInfo()
+    /*NetInfo.getConnectionInfo()
         .then((connectionInfo) => {
             ToastAndroid.show('Initial Network Connectivity Type: '
                 + connectionInfo.type + ', effectiveType: ' + connectionInfo.effectiveType,
                 ToastAndroid.LONG)
         });
 
-    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+    NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);*/
   }
-  componentWillUnmount() {
+  /*componentWillUnmount() {
     NetInfo.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
@@ -322,7 +322,7 @@ class Main extends Component {
       default:
         break;
     }
-  }
+  }*/
   render() {
  
     return (
